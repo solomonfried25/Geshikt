@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_maps"
+        android:icon="@drawable/ic_action_name"
+        android:title="maps" />
+
+    <item
+        android:id="@+id/navigation_drivers"
+        android:icon="@drawable/ic_action_drivers"
+        android:title="drivers" />
+
+    <item
+        android:id="@+id/navigation_jobs"
+        android:icon="@drawable/ic_action_jobs"
+        android:title="jobs" />
+
+    <item
+        android:id="@+id/navigation_new"
+        android:icon="@drawable/ic_action_new"
+        android:title="new" />
+
+    <item
+        android:id="@+id/google_maps"
+        android:icon="@drawable/round_button"
+        android:title="gmap" />
+
+
+</menu>
