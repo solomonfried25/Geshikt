@@ -16,6 +16,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -78,17 +79,22 @@ public class GoogleMaps extends BaseActivity implements OnMapReadyCallback {
             }
         }*/
 
+    LatLng latLngAuto;
+    boolean autoPlaceIsTrue=false;
+
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             editText4=findViewById(R.id.editText4);
+
 
             placeAutocompleteFragment=(PlaceAutocompleteFragment) getFragmentManager().findFragmentById(R.id.auto_complete);
 
             placeAutocompleteFragment.setOnPlaceSelectedListener(new PlaceSelectionListener() {
                 @Override
                 public void onPlaceSelected(Place place) {
-                   final LatLng latLngAuto=place.getLatLng();
+                   latLngAuto=place.getLatLng();
+                   autoPlaceIsTrue=true;
                     if(marker!=null){
                         marker.remove();
                     }
@@ -110,9 +116,15 @@ public class GoogleMaps extends BaseActivity implements OnMapReadyCallback {
 
         private void updateMap(Location location) {
             LatLng jobLocation = new LatLng(location.getLatitude(), location.getLongitude());
-            mMap.clear();
-            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(jobLocation,15));
-            mMap.addMarker(new MarkerOptions().position(jobLocation).title("job 1"));
+            if(!autoPlaceIsTrue){
+                mMap.clear();
+                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(jobLocation,15));
+                mMap.addMarker(new MarkerOptions().position(jobLocation).title("job 1"));
+            }else {
+                mMap.addMarker(new MarkerOptions().position(jobLocation).title("job 1"));
+
+            }
+
         }
 
 
