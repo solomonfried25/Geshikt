@@ -8,9 +8,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
 
-
-
-
 public abstract class BaseActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
 
     protected BottomNavigationView navigationView;
@@ -43,22 +40,51 @@ public abstract class BaseActivity extends AppCompatActivity implements BottomNa
         navigationView.postDelayed(() -> {
             int itemId = item.getItemId();
             if (itemId == R.id.navigation_maps) {
-                startActivity(new Intent(this, MapsActivity.class));
+
+                if (!this.getClass().getName().equals("com.solutions.ef.geshikt.MapsActivity")) {
+                    startActivity(new Intent(this, MapsActivity.class));
+
+                } else {
+                    return;
+                }
+
             } else if (itemId == R.id.navigation_jobs) {
+
+                if (!this.getClass().getName().equals("com.solutions.ef.geshikt.JobsActivity")) {
                     startActivity(new Intent(this, JobsActivity.class));
+
+                } else {
+                    return;
+                }
             } else if (itemId == R.id.navigation_drivers) {
+                if (!this.getClass().getName().equals("com.solutions.ef.geshikt.DriversActivity")) {
                     startActivity(new Intent(this, DriversActivity.class));
-            }else if (itemId == R.id.navigation_new) {
-                startActivity(new Intent(this, NewActivity.class));
-            }else if(itemId == R.id.google_maps){
-                startActivity(new Intent(this,GoogleMaps.class));
+
+                } else {
+                    return;
+                }
+            } else if (itemId == R.id.navigation_new) {
+
+                if (!this.getClass().getName().equals("com.solutions.ef.geshikt.NewActivity")) {
+                    startActivity(new Intent(this, NewActivity.class));
+
+                } else {
+                    return;
+                }
+            } else if (itemId == R.id.google_maps) {
+                if (!this.getClass().getName().equals("com.solutions.ef.geshikt.GoogleMaps")) {
+                    startActivity(new Intent(this, GoogleMaps.class));
+
+                } else {
+                    return;
+                }
             }
             finish();
         }, 300);
         return true;
     }
 
-    private void updateNavigationBarState(){
+    private void updateNavigationBarState() {
         int actionId = getNavigationMenuItemId();
         selectBottomNavigationBarItem(actionId);
     }
@@ -70,6 +96,6 @@ public abstract class BaseActivity extends AppCompatActivity implements BottomNa
 
     abstract int getContentViewId();
 
-     abstract int getNavigationMenuItemId();
+    abstract int getNavigationMenuItemId();
 
 }
